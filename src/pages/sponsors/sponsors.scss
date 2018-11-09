@@ -1,0 +1,40 @@
+page-sponsors {
+  
+  h1 {
+    font-size: 3rem;
+    font-family: 'Lato', sans-serif;
+    color: #0079c2;
+    font-weight: 300;
+    margin: 0 0 25px 0;
+    text-transform: uppercase;
+  }
+
+  .logos {
+    display: inline-block;
+    list-style: none;
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .logos li {
+    margin-left: 25px;
+    display: inline-block;
+  }
+
+  .logos li:first-child {
+    margin-left: 0;
+  }
+
+  .logos li a {
+    border-bottom: 0;
+    text-decoration: none;
+  }
+
+  .logos li a:hover {
+    background-color: transparent;
+  }
+
+  .logos li img {
+    max-height: 150px;
+  }
+}

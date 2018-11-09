@@ -1,0 +1,44 @@
+page-news {
+  #news {
+    background-color: #f4efd0;
+  }
+
+  .conferencia {
+    padding-bottom: 50px;
+    margin-bottom: 50px;
+    border-bottom: 1px dashed #0079c2;
+  }
+
+  .conferencia:first-child {
+    margin-top: 50px;
+  }
+
+  .conferencia:last-child {
+    border: 0;
+    margin-bottom: 0;
+  }
+
+  .conferencia .horas {
+    background-color: #0079c2;
+    border-radius: 10px;
+    color: #fff;
+    font-weight: 400;
+    display: inline-block;
+    font-size: 1rem;
+    margin-right: 25px;
+    padding: 1px 15px;
+    vertical-align: top;
+  }
+
+  .conferencia .titulo {
+    display: inline-block;
+    width: 90%;
+  }
+
+  .conferencia .titulo p {
+    font-size: .9rem;
+    margin: 5px 0 0 0;
+    max-width: 1280px;
+  }
+
+}
