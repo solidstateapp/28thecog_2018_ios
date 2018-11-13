@@ -14,6 +14,13 @@ import { SponsorsPage } from "../pages/sponsors/sponsors";
 import { ScientificsupportPage } from '../pages/scientificsupport/scientificsupport';
 import { WelcomePage } from '../pages/welcome/welcome';
 
+import { FcmProvider } from '../providers/fcm/fcm';
+
+import { ToastController } from 'ionic-angular';
+// import { Subject } from 'rxjs/Subject';
+import { tap } from 'rxjs/operators';
+
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -24,8 +31,13 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
-    this.initializeApp();
+  constructor(
+    public fcm: FcmProvider,
+    public toastCtrl: ToastController,
+    public platform: Platform,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen
+    ) {
 
     // used for an example of ngFor and navigation
     this.pages = [
@@ -41,14 +53,25 @@ export class MyApp {
       { title: 'Scientific', component: ScientificsupportPage }
     ];
 
-  }
+    platform.ready().then(() => {
+      // Get a FCM token
+      fcm.getToken();
 
-  initializeApp() {
-    this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      // Listen to incoming messages
+      fcm.listenToNotifications().pipe(
+        tap(msg => {
+          // show a toast
+          const toast = toastCtrl.create({
+            message: msg.body,
+            duration: 3000
+          });
+          toast.present();
+        })
+      )
+      .subscribe();
+
+      statusBar.styleDefault();
+      splashScreen.hide();
     });
   }
 

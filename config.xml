@@ -93,6 +93,7 @@
         <variable name="MIN_BACKGROUND_DURATION" value="30" />
     </plugin>
     <plugin name="cordova-plugin-calendar" spec="~5.1.2" />
-    <engine name="android" spec="7.1.1" />
-    <engine name="ios" spec="^4.5.5" />
+    <plugin name="cordova-plugin-firebase" spec="2.0.5" />
+    <plugin name="cordova-plugin-fcm-with-dependecy-updated" spec="2.2.6" />
+    <engine name="ios" spec="4.5.5" />
 </widget>

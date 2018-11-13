@@ -22,9 +22,27 @@ import { Calendar } from '@ionic-native/calendar';
 
 import { Pro } from '@ionic/pro';
 
+import { Firebase } from '@ionic-native/firebase';
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+
+import { FCM } from '@ionic-native/fcm';
+import { FcmProvider } from '../providers/fcm/fcm';
+
 Pro.init('92d6957b', {
   appVersion: '1.0.5'
-})
+});
+
+const firebase = {
+  apiKey: "AIzaSyDErovJ06aqNVEcIRLBVFwABoJs1IN4ILo",
+  authDomain: "ecog2018-e0eac.firebaseapp.com",
+  databaseURL: "https://ecog2018-e0eac.firebaseio.com",
+  projectId: "ecog2018-e0eac",
+  storageBucket: "ecog2018-e0eac.appspot.com",
+  messagingSenderId: "876558959199"
+};
+ 
 
 @Injectable()
 export class MyErrorHandler implements ErrorHandler {
@@ -65,6 +83,8 @@ export class MyErrorHandler implements ErrorHandler {
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebase),
+    AngularFirestoreModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -86,7 +106,10 @@ export class MyErrorHandler implements ErrorHandler {
     SplashScreen,
     IonicErrorHandler,
     Calendar,
-    {provide: ErrorHandler, useClass: MyErrorHandler}
+    Firebase,
+    FCM,
+    {provide: ErrorHandler, useClass: MyErrorHandler},
+    FcmProvider
   ]
 })
 export class AppModule {}
